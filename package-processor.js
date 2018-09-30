@@ -9,7 +9,7 @@ const request = (arrivalTime, processTime) => {
   };
 };
 
-const response = (dropped, startTime, bufferId) => {
+const response = (dropped, startTime, bufferId, processTime, scheduledTime) => {
   return {
     dropped: () => {
       return dropped;
@@ -19,7 +19,14 @@ const response = (dropped, startTime, bufferId) => {
     },
     bufferId: () => {
       return bufferId;
-    }
+    },
+    processTime: () => {
+      return processTime;
+    },
+    scheduledTime: () => {
+      return scheduledTime;
+    },
+    
   };
 };
 
@@ -36,7 +43,7 @@ const buffer = (bufferSize) => {
       let processTime = request.processTime();
       if (finishTimes.length === 0) {
         finishTimes.push(arrivalTime + processTime);
-        return response(false, arrivalTime, 0);
+        return response(false, arrivalTime, 0, processTime, arrivalTime);
       }
       // lets check if we can remove finishTimes which have already been processed
       let i = 0;
@@ -49,7 +56,7 @@ const buffer = (bufferSize) => {
       }
       // lets check if buffer is full .. if it is then we class packet as dropped
       if (finishTimes.length === bufferSize) {
-        return response(true, -1);
+        return response(true, -1, undefined , processTime, arrivalTime);
       } else {
 
         // lets figure out what the start time actually is for this packet
@@ -62,7 +69,7 @@ const buffer = (bufferSize) => {
           startTime = finishTimes[finishTimes.length - 1];
         }
         finishTimes.push(startTime + processTime);
-        return response(false, startTime, finishTimes.length - 1);
+        return response(false, startTime, finishTimes.length - 1, processTime, arrivalTime);
       }
     }
   };
@@ -101,7 +108,8 @@ const packageProcessor = () => {
     for (let i = 0; i < numberOfIncomingNetworkPackets; i += 1) {
       responses.push(packageBuffer.process(listOfNetworkPackets[i]));
     }
-    processResponses();
+    return responses;
+//    processResponses();
   }
 
   function processResponses() {
@@ -149,7 +157,7 @@ const packageProcessor = () => {
       listOfNetworkPackets.push(request(15, 1));
       listOfNetworkPackets.push(request(16, 2));
       listOfNetworkPackets.push(request(17, 3));
-      run();
+      return run();
     }
 
   }

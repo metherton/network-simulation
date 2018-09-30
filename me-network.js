@@ -85,7 +85,10 @@ class MeNetwork extends HTMLElement {
     `;
     this._$startSimulationButton = this._root.querySelector('#start-simulation');
     this._$startSimulationButton.addEventListener('click', (event) => {
-      packageProcessor().start();
+      const packets = packageProcessor().start();
+      for (let i = 0; i < packets.length; i += 1) {
+        console.log('packet: startTime: ' + packets[i].startTime() + ' processTime: ' + packets[i].processTime() + ' scheduledTime: ' + packets[i].scheduledTime() + ' dropped: ' + packets[i].dropped() + ' bufferId: ' + packets[i].bufferId() );
+      }
       const packet = document.createElement('me-packet');
       this._root.getElementById('packet-path').appendChild(packet);
       // setTimeout(() => {
