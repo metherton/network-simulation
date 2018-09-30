@@ -11,14 +11,27 @@ class MePacket extends HTMLElement {
   connectedCallback() {
     this._root.innerHTML = `
       <style>
+        :host {
+          background-color: blue;
+        }
+        :root {
+          width: 100%;
+          background-color: red;
+        }
         .circle {
           height: 20px;
           width: 20px;
           background-color: mediumseagreen;
           border-radius: 50%;
-        }      
+          transition: transform 2s;
+          will-change: transform;  
+          z-index: 10;
+        }
+        .move {
+          transform: translateX(145vh);
+        }
       </style>
-      <div class="circle"></div>
+      <div id='packet' class="circle"></div>
       
     `;
     this._$text = this._root.querySelector('#text'); //store important elements for later use..prefixing DOM elements with $
@@ -31,12 +44,16 @@ class MePacket extends HTMLElement {
 
   // observe attribute changes
   static get observedAttributes() {
-    return ['an-important-attribute'];
+    return ['an-important-attribute', 'move'];
   }
 
   // react to attribute changes
   attributeChangedCallback(name, oldValue, newValue) {
     // do stuff
+    if (name === 'move' && newValue) {
+      const packet = this._root.getElementById('packet');
+      packet.classList.add('move');
+    }
   }
 
   // use setters and getters to create an API for the component
