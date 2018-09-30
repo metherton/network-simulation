@@ -11,25 +11,18 @@ class MePacket extends HTMLElement {
   connectedCallback() {
     this._root.innerHTML = `
       <style>
-        :host {
-          background-color: blue;
-        }
-        :root {
-          width: 100%;
-          background-color: red;
-        }
         .circle {
           position: relative;
-          left: 0;
+          left: -5%;
           height: 20px;
           width: 20px;
           background-color: mediumseagreen;
           border-radius: 50%;
-          transition: left 5s;
+          transition: left 2s;
           z-index: 10;
         }
         .move {
-          left: 100%;
+          left: 105%;
         }
       </style>
       <div id='packet' class="circle"></div>

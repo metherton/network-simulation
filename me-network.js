@@ -31,8 +31,9 @@ class MeNetwork extends HTMLElement {
           width: 10%;
           background: lightgrey;
           padding: 1em 0 1em 0;
+          z-index: 30;
         }
-        #packet-consumer {
+        #packet-consumer {  
           width: 10%;
           background: lightgrey;
           padding: 1em 0 1em 0;
@@ -40,7 +41,6 @@ class MeNetwork extends HTMLElement {
         }
         #packet-path {
           width: 80%;
-          background-color: red;
         }
         #button-container {
           width: 100%;
