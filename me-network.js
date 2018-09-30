@@ -194,6 +194,9 @@ class MeNetwork extends HTMLElement {
           background: lightgrey;
           padding: 1em 0 1em 0;
         }
+        #packet-path {
+          width: 80%;
+        }
         #button-container {
           width: 100%;
           display:flex;
@@ -218,6 +221,9 @@ class MeNetwork extends HTMLElement {
         <div id="network">
           <div id="network-path">
             <div id="packet-generator">Packet generator</div>
+            <div id="packet-path">
+              <!--<me-packet></me-packet>-->
+            </div>
             <div id="packet-consumer">Packet consumer</div>
           </div>
         </div>

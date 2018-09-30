@@ -12,9 +12,9 @@ class MePacket extends HTMLElement {
     this._root.innerHTML = `
       <style>
         .circle {
-          height: 50px;
-          width: 50px;
-          background-color: #555;
+          height: 20px;
+          width: 20px;
+          background-color: mediumseagreen;
           border-radius: 50%;
         }      
       </style>
