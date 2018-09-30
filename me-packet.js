@@ -19,16 +19,17 @@ class MePacket extends HTMLElement {
           background-color: red;
         }
         .circle {
+          position: relative;
+          left: 0;
           height: 20px;
           width: 20px;
           background-color: mediumseagreen;
           border-radius: 50%;
-          transition: transform 2s;
-          will-change: transform;  
+          transition: left 5s;
           z-index: 10;
         }
         .move {
-          transform: translateX(145vh);
+          left: 100%;
         }
       </style>
       <div id='packet' class="circle"></div>
