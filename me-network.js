@@ -18,7 +18,11 @@ class MeNetwork extends HTMLElement {
         }
         #start-simulation {
           width: 100%;
+          font-size: 2em;
           padding: 1em;
+        }
+        #start-simulation:hover {
+          cursor: pointer;
         }
         #network-path {
           width: 100%;
@@ -32,19 +36,24 @@ class MeNetwork extends HTMLElement {
           background: lightgrey;
           padding: 1em 0 1em 0;
           z-index: 30;
+          text-align: center;
         }
         #packet-consumer {  
           width: 10%;
           background: lightgrey;
           padding: 1em 0 1em 0;
           z-index: 30;
+          text-align: center;
         }
         #packet-path-container {
           width: 100%;
           position: absolute;
+          height: 100%;
         }
         #packet-path {
           width: 80%;
+          vertical-align: middle;
+          height: 100%;
         }
         #button-container {
           width: 100%;
@@ -60,13 +69,15 @@ class MeNetwork extends HTMLElement {
         #buffer div {
           width: 5%;
         }
+        #network {
+          margin-top: 1em;
+        }
       </style>
       <script src="network-simulation.js"></script>
         
       <div id="container">
         <div id="button-container">
           <button id="start-simulation" type="button">Start Network Simulation</button>     
-             <button id="move" type="button">Move</button>  
         </div>
         <div id="network">
           <div id="network-path">

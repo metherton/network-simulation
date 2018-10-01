@@ -14,8 +14,8 @@ class MePacket extends HTMLElement {
         .circle {
           position: absolute;
           left: -5%;
-          height: 20px;
-          width: 20px;
+          height: 80px;
+          width: 80px;
           background-color: mediumseagreen;
           border-radius: 50%;
           transition: left 5s;
