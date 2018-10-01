@@ -26,7 +26,7 @@ const response = (dropped, startTime, bufferId, processTime, scheduledTime) => {
     scheduledTime: () => {
       return scheduledTime;
     },
-    
+
   };
 };
 

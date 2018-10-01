@@ -26,7 +26,6 @@ class MeNetwork extends HTMLElement {
         }
         #network-path {
           width: 100%;
-          background: ghostwhite;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -48,12 +47,9 @@ class MeNetwork extends HTMLElement {
         #packet-path-container {
           width: 100%;
           position: absolute;
-          height: 100%;
         }
         #packet-path {
           width: 80%;
-          vertical-align: middle;
-          height: 100%;
         }
         #button-container {
           width: 100%;
@@ -107,6 +103,14 @@ class MeNetwork extends HTMLElement {
         console.log('packet: startTime: ' + packets[i].startTime() + ' processTime: ' + packets[i].processTime() + ' scheduledTime: ' + packets[i].scheduledTime() + ' dropped: ' + packets[i].dropped() + ' bufferId: ' + packets[i].bufferId() );
         const packet = document.createElement('me-packet');
         packet.setAttribute('id', 'packet' + i);
+        packet.data = {
+          id: i,
+          startTime: packets[i].startTime(),
+          processTime: packets[i].processTime(),
+          scheduledTime: packets[i].scheduledTime(),
+          bufferId: packets[i].bufferId(),
+          dropped: packets[i].dropped(),
+        };
         this._root.getElementById('packet-path').appendChild(packet);
         setTimeout(() => {
           packet.setAttribute('move', true);
@@ -115,11 +119,11 @@ class MeNetwork extends HTMLElement {
    //   packet.classList.add('move');
     //  this._render();
     });
-    this._$move = this._root.querySelector('#move');
-    this._$move.addEventListener('click', (event) => {
-      const packet = this._root.querySelector('me-packet');
-      packet.setAttribute('move', true);
-    });
+    // this._$move = this._root.querySelector('#move');
+    // this._$move.addEventListener('click', (event) => {
+    //   const packet = this._root.querySelector('me-packet');
+    //   packet.setAttribute('move', true);
+    // });
     //this._$text = this._root.querySelector('#text'); //store important elements for later use..prefixing DOM elements with $
   //  this._render();
   }
