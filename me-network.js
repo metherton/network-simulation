@@ -39,6 +39,10 @@ class MeNetwork extends HTMLElement {
           padding: 1em 0 1em 0;
           z-index: 30;
         }
+        #packet-path-container {
+          width: 100%;
+          position: absolute;
+        }
         #packet-path {
           width: 80%;
         }
@@ -67,8 +71,10 @@ class MeNetwork extends HTMLElement {
         <div id="network">
           <div id="network-path">
             <div id="packet-generator">Packet generator</div>
-            <div id="packet-path">
-              <!--<me-packet></me-packet>-->
+            <div id="packet-path-container">
+              <div id="packet-path">
+                <!--<me-packet></me-packet>-->
+              </div>      
             </div>
             <div id="packet-consumer">Packet consumer</div>
           </div>
@@ -88,12 +94,13 @@ class MeNetwork extends HTMLElement {
       const packets = packageProcessor().start();
       for (let i = 0; i < packets.length; i += 1) {
         console.log('packet: startTime: ' + packets[i].startTime() + ' processTime: ' + packets[i].processTime() + ' scheduledTime: ' + packets[i].scheduledTime() + ' dropped: ' + packets[i].dropped() + ' bufferId: ' + packets[i].bufferId() );
+        const packet = document.createElement('me-packet');
+        packet.setAttribute('id', 'packet' + i);
+        this._root.getElementById('packet-path').appendChild(packet);
+        setTimeout(() => {
+          packet.setAttribute('move', true);
+        }, packets[i].scheduledTime() * 1000);
       }
-      const packet = document.createElement('me-packet');
-      this._root.getElementById('packet-path').appendChild(packet);
-      // setTimeout(() => {
-      //   packet.classList.add('move');
-      // }, 1000);
    //   packet.classList.add('move');
     //  this._render();
     });

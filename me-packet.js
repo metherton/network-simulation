@@ -12,20 +12,20 @@ class MePacket extends HTMLElement {
     this._root.innerHTML = `
       <style>
         .circle {
-          position: relative;
+          position: absolute;
           left: -5%;
           height: 20px;
           width: 20px;
           background-color: mediumseagreen;
           border-radius: 50%;
-          transition: left 2s;
+          transition: left 5s;
           z-index: 10;
         }
         .move {
           left: 105%;
         }
       </style>
-      <div id='packet' class="circle"></div>
+      <div class="circle"></div>
       
     `;
     this._$text = this._root.querySelector('#text'); //store important elements for later use..prefixing DOM elements with $
@@ -45,7 +45,7 @@ class MePacket extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     // do stuff
     if (name === 'move' && newValue) {
-      const packet = this._root.getElementById('packet');
+      const packet = this._root.querySelector('.circle');
       packet.classList.add('move');
     }
   }
